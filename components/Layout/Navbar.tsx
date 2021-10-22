@@ -8,7 +8,7 @@ export default function Navbar () {
     <Popover className='relative bg-white'>
       <div className='max-w-7xl mx-auto px-4 sm:px-6'>
         <div className='flex justify-between items-center border-b-2 border-gray-100 py-6 md:justify-start md:space-x-10'>
-          <div className='flex justify-start lg:w-0 lg:flex-1'>
+          <div className='flex justify-start lg:w-0 lg:flex-1 cursor-pointer'>
             <Link href='/'>
               <img className='h-8 w-auto sm:h-10' src='/favicon.ico' alt='' />
             </Link>
@@ -21,7 +21,7 @@ export default function Navbar () {
           </div>
           <Popover.Group as='nav' className='hidden md:flex space-x-10'>
             <Link href='/'>
-              <p className='cursor-pointer text-base font-medium text-gray-500 hover:text-gray-900'>
+              <p className='cursor-pointer text-base font-medium text-gray-500 hover:text-indigo-500'>
               Home
               </p>
             </Link>
@@ -63,7 +63,7 @@ export default function Navbar () {
             <div className='py-6 px-5 space-y-6'>
               <div className='grid gap-y-4 gap-x-8'>
                 <Link href='/'>
-                  <p className='text-base font-medium text-gray-900 hover:text-gray-700'>
+                  <p className='text-base font-medium text-gray-900 hover:text-indigo-500'>
                     Home
                   </p>
                 </Link>

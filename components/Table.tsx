@@ -36,7 +36,7 @@ function GlobalFilter ({
       <span className='text-gray-700'>Search: </span>
       <input
         type='search'
-        className='mt-1 block w-full max-w-md mb-5 pl-2 rounded-md border-1 border-gray-400 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 py-3'
+        className='mt-1 block w-full max-w-md mb-5 pl-2 rounded-md border-1 border-gray-400 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 py-3'
         value={value || ''}
         onChange={e => {
           setValue(e.target.value)
@@ -198,8 +198,8 @@ function Table ({ columns, data }: any) {
         <div className='hidden sm:flex-1 sm:flex sm:items-center sm:justify-between'>
           <div className='flex gap-x-2'>
             <span className='text-sm text-gray-700'>
-              Página <span className='font-medium'>{state.pageIndex + 1}</span>{' '}
-              de <span className='font-medium'>{pageOptions.length}</span>
+              Page <span className='font-medium'>{state.pageIndex + 1}</span>{' '}
+              of <span className='font-medium'>{pageOptions.length}</span>
             </span>
             {/* <select
               value={pageSize}

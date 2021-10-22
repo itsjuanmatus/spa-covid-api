@@ -2,6 +2,7 @@ import React from 'react'
 import 'regenerator-runtime/runtime'
 import { Bar } from 'react-chartjs-2'
 import Dropdown from '../../../components/UI/Dropdown'
+import Error from 'next/error'
 
 const defaultEndpoint = `https://covid-193.p.rapidapi.com/statistics?country=`
 
@@ -14,6 +15,7 @@ export async function getServerSideProps ({ query }: any) {
       'x-rapidapi-key': '67f1b9b329msh37f1aaceb84a3aep18c5fejsn7dd88e237824'
     }
   })
+
   const data = await res.json()
   return {
     props: {
@@ -26,7 +28,12 @@ export async function getServerSideProps ({ query }: any) {
 
 
 function Country ({ data }: any) {
+
+  
     const countries = data['response'][0]
+    if (!countries) {
+      return <Error statusCode={404} />;
+    }
 
     const chartData = {
         labels: ['Total Deaths', 'Total Cases', 'Recovered',],
@@ -68,8 +75,8 @@ function Country ({ data }: any) {
       }
   
 
-  console.log(countries)
-
+/*   console.log(countries)
+ */
   return (
     <div className='bg-gray-100 min-h-screen w-full grid justify-items-center'>
       <div className='flex-col justify-items-center mb-10'>

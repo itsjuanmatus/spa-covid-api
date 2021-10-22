@@ -30,8 +30,8 @@ export default function Dropdown () {
 
   let countries
   if (countryList != undefined) countries = countryList['response']
-  console.log(countries)
-
+/*   console.log(countries)
+ */
   const [selected, setSelected] = useState(countries && countries[3])
 
   return (

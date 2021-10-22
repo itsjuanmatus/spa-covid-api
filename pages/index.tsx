@@ -8,8 +8,8 @@ const Home: NextPage = ({ data }: any) => {
   const sortedCountries = data['response'].sort((a: any, b: any) =>
     a.continent > b.continent ? 1 : -1
   )
-  console.log(sortedCountries)
-
+/*   console.log(sortedCountries)
+ */
   const columns = React.useMemo(
     () => [
       {
@@ -19,7 +19,7 @@ const Home: NextPage = ({ data }: any) => {
       {
         Header: 'Country',
         accessor: 'country',
-        Cell: (e: any) => <Link href={`/country/${e.value}`}>{e.value}</Link>
+        Cell: (e: any) => <Link href={`/country/${e.value}`}><p className='cursor-pointer hover:bg-indigo-500 max-w-min p-1 hover:text-white rounded-md'>{e.value}</p></Link>
       },
       {
         Header: 'Total Cases',
@@ -46,7 +46,8 @@ const Home: NextPage = ({ data }: any) => {
     <div className='w-full min-h-screen bg-gray-100 grid justify-items-center'>
       <div className='w-full max-w-5xl mb-10'>
         <h1 className='text-4xl font-bold mt-10'>COVID CASES</h1>
-        <p className='mt-2 text-gray-500 mb-7'>Click on the name of a country to find the details about it</p>
+        <p className='mt-2 text-gray-500 mb-1'>Click on the name of a country to find the details about it.</p>
+        <p className='mt-2 text-gray-500 mb-7'>Also, click on the header of the column to sort it.</p>
         <Table columns={columns} data={sortedCountries} />
       </div>
     </div>
