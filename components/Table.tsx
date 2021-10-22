@@ -186,7 +186,7 @@ function Table ({ columns, data }: any) {
           </div>
         </div>
       </div>
-      <div className='py-3 flex items-center justify-between'>
+      <div className='py-3 flex items-center justify-between w-full'>
         <div className='flex-1 flex justify-between sm:hidden'>
           <Button onClick={() => previousPage()} disabled={!canPreviousPage}>
             Previous
