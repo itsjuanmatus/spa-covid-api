@@ -25,7 +25,7 @@ export async function getServerSideProps ({ query }: any) {
 // CHARTJS DATA
 
 
-export default function Country ({ data }: any) {
+function Country ({ data }: any) {
     const countries = data['response'][0]
 
     const chartData = {
@@ -144,3 +144,5 @@ export default function Country ({ data }: any) {
     </div>
   )
 }
+
+export default Country
