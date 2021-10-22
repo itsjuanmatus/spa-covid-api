@@ -1,13 +1,11 @@
 import { NextPage } from 'next'
 import Table from '../components/Table'
-import React, { useState } from 'react'
+import React from 'react'
+import 'regenerator-runtime/runtime'
+import Link from 'next/link'
 
 const Home: NextPage = ({ data }: any) => {
-
-  const { info } = data
-  const [results, updateResults] = useState(data)
-
-  const sortedCountries = results['response'].sort((a: any, b: any) =>
+  const sortedCountries = data['response'].sort((a: any, b: any) =>
     a.continent > b.continent ? 1 : -1
   )
   console.log(sortedCountries)
@@ -20,7 +18,8 @@ const Home: NextPage = ({ data }: any) => {
       },
       {
         Header: 'Country',
-        accessor: 'country'
+        accessor: 'country',
+        Cell: (e: any) => <Link href={`/country/${e.value}`}>{e.value}</Link>
       },
       {
         Header: 'Total Cases',
@@ -43,68 +42,12 @@ const Home: NextPage = ({ data }: any) => {
     []
   )
 
-  const [page, updatePage] = useState({
-    ...info,
-    current: defaultEndpoint
-  })
-
-  const { current } = page
-
-  function handleOnSubmitSearch (e: any) {
-    e.preventDefault()
-
-    const { currentTarget = {} } = e
-    const fields = Array.from(currentTarget?.elements)
-    const fieldQuery: any = fields.find((field: any) => field.name === 'query')
-
-    const value = fieldQuery.value || ''
-    const endpoint = `https://covid-193.p.rapidapi.com/statistics?country=${value}`
-
-    updatePage({
-      current: endpoint
-    })
-
-  }
-
   return (
     <div className='w-full min-h-screen bg-gray-100 grid justify-items-center'>
-      <div className='w-full max-w-5xl'>
-        {/*  <Table columns={columns} data={sortedCountries} /> */}
-        <h1 className='text-2xl font-bold'>Covid Cases App</h1>
-        <form className='search' onSubmit={handleOnSubmitSearch}>
-          <input
-            name='query'
-            type='search'
-            className='p-2 border-gray-100 shadow-sm rounded-md mt-3'
-          />
-          <button className='bg-indigo-700 text-white px-3 py-2 rounded-md ml-2'>
-            Search
-          </button>
-        </form>
-
-        <ul className='grid gap-y-2 mt-10'>
-          <li className='grid grid-cols-5 bg-white rounded-md border-gray-100 shadow-sm p-3 '>
-            <h3>Continent</h3>
-            <h3>Country</h3>
-            <h3>Total Cases</h3>
-            <h3>Last Update</h3>
-            <h3>Population</h3>
-          </li>
-          {sortedCountries.map((country: any) => {
-            return (
-              <li
-                key={country}
-                className='grid grid-cols-5 bg-white rounded-md border-gray-100 shadow-sm p-3'
-              >
-                <h3>{country.continent}</h3>
-                <h3>{country.country}</h3>
-                <h3>{country.cases.total}</h3>
-                <h3>{country.day}</h3>
-                <h3>{country.population}</h3>
-              </li>
-            )
-          })}
-        </ul>
+      <div className='w-full max-w-5xl mb-10'>
+        <h1 className='text-4xl font-bold mt-10'>COVID CASES</h1>
+        <p className='mt-2 text-gray-500 mb-7'>Click on the name of a country to find the details about it</p>
+        <Table columns={columns} data={sortedCountries} />
       </div>
     </div>
   )
