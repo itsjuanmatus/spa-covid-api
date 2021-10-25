@@ -3,6 +3,7 @@ import Table from "../components/Table";
 import React from "react";
 import "regenerator-runtime/runtime";
 import Link from "next/link";
+import Head from "next/head";
 
 const Home: NextPage = ({ data }: any) => {
   const sortedCountries = data["response"].sort((a: any, b: any) =>
@@ -55,6 +56,9 @@ const Home: NextPage = ({ data }: any) => {
 
   return (
     <div className="w-full m-auto min-h-screen bg-gray-100 flex justify-center overflow-x-hidden">
+      <Head>
+        <title>COVID-19</title>
+      </Head>
       <div className="w-full flex-col px-2 md:px-0 justify-center max-w-max">
         <h1 className="text-4xl font-bold mt-10">COVID CASES</h1>
         <p className="mt-2 text-gray-500 mb-1 break-words">
