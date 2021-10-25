@@ -7,11 +7,11 @@ import Error from 'next/error'
 const defaultEndpoint = `https://covid-193.p.rapidapi.com/statistics?country=`
 
 export async function getServerSideProps ({ query }: any) {
-  const { id } = query
+        const { id } = query
   const res = await fetch(`${defaultEndpoint}${id}`, {
-    method: 'GET',
+          method: 'GET',
     headers: {
-      'x-rapidapi-host': 'covid-193.p.rapidapi.com',
+          'x-rapidapi-host': 'covid-193.p.rapidapi.com',
       'x-rapidapi-key': '67f1b9b329msh37f1aaceb84a3aep18c5fejsn7dd88e237824'
     }
   })
