@@ -20,7 +20,7 @@ const Home: NextPage = ({ data }: any) => {
         Header: 'Country',
         accessor: 'country',
         Cell: (e: any) => (
-          <Link href={`/country/${e.value}`}>
+          <Link href={`/country/${e.value}`} passHref>
             <p className='cursor-pointer hover:bg-indigo-500 max-w-min p-1 hover:text-white rounded-md'>
               {e.value}
             </p>

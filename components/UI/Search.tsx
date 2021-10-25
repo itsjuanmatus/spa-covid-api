@@ -39,6 +39,7 @@ export default function Search () {
     console.log(searchTerm)
   }
 
+  
   React.useEffect(() => {
     const results: any =
       countries &&
@@ -46,7 +47,7 @@ export default function Search () {
         e.toLowerCase().includes(searchTerm.toLowerCase())
       )
     setSearchResults(results)
-  }, [searchTerm])
+  }, [searchTerm, countries]) 
 
   return (
     <div className='flex'>

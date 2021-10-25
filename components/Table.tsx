@@ -10,7 +10,6 @@ import {
 } from 'react-table'
 
 import { Button, PageButton } from './shared/Button'
-import { classNames } from './shared/Utils'
 
 import {
   ChevronDoubleLeftIcon,
@@ -55,8 +54,6 @@ function Table ({ columns, data }: any) {
     getTableBodyProps,
     headerGroups,
     prepareRow,
-    selectedFlatRows,
-    state: { pageSize },
     page,
     canPreviousPage,
     canNextPage,
@@ -65,8 +62,6 @@ function Table ({ columns, data }: any) {
     gotoPage,
     nextPage,
     previousPage,
-    setPageSize,
-    rows,
     state,
     preGlobalFilteredRows,
     setGlobalFilter
@@ -148,7 +143,7 @@ function Table ({ columns, data }: any) {
                   {...getTableBodyProps()}
                   className='bg-white divide-y divide-gray-200'
                 >
-                  {page.map((row: any, i: any) => {
+                  {page.map((row: any) => {
                     prepareRow(row)
                     return (
                       <tr {...row.getRowProps()} key={row.getKey}>
@@ -168,20 +163,6 @@ function Table ({ columns, data }: any) {
                   })}
                 </tbody>
               </table>
-              {/* <pre>
-                <code>
-                  {JSON.stringify(
-                    {
-                      selectedRowIds: selectedRowIds,
-                      'selectedFlatRows[].original': selectedFlatRows.map(
-                        (d: any) => d.original.SCORE
-                      )
-                    },
-                    null,
-                    2
-                  )}
-                </code>
-              </pre> */}
             </div>
           </div>
         </div>
@@ -201,19 +182,6 @@ function Table ({ columns, data }: any) {
               Page <span className='font-medium'>{state.pageIndex + 1}</span>{' '}
               of <span className='font-medium'>{pageOptions.length}</span>
             </span>
-            {/* <select
-              value={pageSize}
-              onChange={e => {
-                setPageSize(Number(e.target.value))
-              }}
-              className='inline-flex justify-center w-full min-w-max rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500'
-            >
-              {[5, 10, 20].map(pageSize => (
-                <option key={pageSize} value={pageSize} className=''>
-                  Mostrar {pageSize}
-                </option>
-              ))}
-            </select> */}
           </div>
           <div>
             <nav

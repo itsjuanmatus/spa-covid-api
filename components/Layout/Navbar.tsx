@@ -3,15 +3,22 @@ import { Popover, Transition } from '@headlessui/react'
 import { MenuIcon, XIcon } from '@heroicons/react/outline'
 import Link from 'next/link'
 import Search from '../UI/Search'
+import Image from 'next/image'
 
 export default function Navbar () {
   return (
     <Popover className='relative bg-white'>
       <div className='max-w-7xl mx-auto px-4 sm:px-6'>
         <div className='flex justify-between items-center border-b-2 border-gray-100 py-6 md:justify-start md:space-x-10'>
-          <div className='flex justify-start lg:w-0 lg:flex-1 cursor-pointer'>
+          <div className='flex justify-start lg:w-0 lg:flex-1 cursor-pointer items-center'>
             <Link href='/' passHref>
-              <img className='h-8 w-auto sm:h-10' src='/favicon.ico' alt='' />
+              <Image
+                className='h-8 w-auto sm:h-10'
+                src='/favicon.ico'
+                alt='Covid icon'
+                width={50}
+                height={50}
+              />
             </Link>
             <div className='ml-10'>
               <Search />
@@ -52,10 +59,12 @@ export default function Navbar () {
               <div className='flex items-center justify-between'>
                 <div>
                   <Link href='/' passHref>
-                    <img
+                    <Image
                       className='h-8 w-auto sm:h-10'
                       src='/favicon.ico'
-                      alt=''
+                      alt='Covid Icon'
+                      width={50}
+                      height={50}
                     />
                   </Link>
                 </div>
