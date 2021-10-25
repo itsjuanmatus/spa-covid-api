@@ -25,58 +25,60 @@ export async function getServerSideProps ({ query }: any) {
 }
 
 // CHARTJS DATA
-
-
 function Country ({ data }: any) {
+  const countries = data['response'][0]
+  if (!countries) {
+    return <Error statusCode={404} />
+  }
 
-  
-    const countries = data['response'][0]
-    if (!countries) {
-      return <Error statusCode={404} />;
+  const chartData = {
+    labels: ['Total Deaths', 'Total Cases', 'Recovered'],
+    datasets: [
+      {
+        data: [
+          countries.deaths.total,
+          countries.cases.total,
+          countries.cases.recovered
+        ],
+        backgroundColor: [
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(54, 162, 235, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(153, 102, 255, 0.2)',
+          'rgba(255, 159, 64, 0.2)'
+        ],
+        borderColor: [
+          'rgba(255, 99, 132, 1)',
+          'rgba(54, 162, 235, 1)',
+          'rgba(75, 192, 192, 1)'
+        ],
+        borderWidth: 1
+      }
+    ]
+  }
+
+  const options = {
+    indexAxis: 'y',
+    elements: {
+      bar: {
+        borderWidth: 2
+      }
+    },
+    responsive: true,
+    plugins: {
+      legend: false,
+      title: {
+        display: true,
+        text: 'Graphical representation of cases'
+      }
     }
+  }
 
-    const chartData = {
-        labels: ['Total Deaths', 'Total Cases', 'Recovered',],
-        datasets: [
-          {
-            data: [countries.deaths.total, countries.cases.total, countries.cases.recovered],
-            backgroundColor: [
-              'rgba(255, 99, 132, 0.2)',
-              'rgba(54, 162, 235, 0.2)',
-              'rgba(75, 192, 192, 0.2)',
-              'rgba(153, 102, 255, 0.2)',
-              'rgba(255, 159, 64, 0.2)'
-            ],
-            borderColor: [
-              'rgba(255, 99, 132, 1)',
-              'rgba(54, 162, 235, 1)',
-              'rgba(75, 192, 192, 1)',
-            ],
-            borderWidth: 1
-          }
-        ]
-      }
-    
-      const options = {
-        indexAxis: 'y',
-        elements: {
-          bar: {
-            borderWidth: 2
-          }
-        },
-        responsive: true,
-        plugins: {
-            legend: false,
-          title: {
-            display: true,
-            text: 'Graphical representation of cases'
-          }
-        }
-      }
-  
+  let lastUpdate = countries.time.replace('T', ' ')
+  lastUpdate = lastUpdate.slice(0, lastUpdate.length - 9)
 
-/*   console.log(countries)
- */
+  /*   console.log(countries)
+   */
   return (
     <div className='bg-gray-100 min-h-screen w-full grid justify-items-center'>
       <div className='flex-col justify-items-center mb-10'>
@@ -89,7 +91,7 @@ function Country ({ data }: any) {
             Continent - {countries.continent}
           </p>
           <h3 className='font-semibold mt-5 text-gray-600'>
-            Last Update - {countries.day}
+            Last Update - {lastUpdate}
           </h3>
           <Dropdown />
         </div>

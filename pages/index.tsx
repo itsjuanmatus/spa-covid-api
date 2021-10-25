@@ -38,7 +38,12 @@ const Home: NextPage = ({ data }: any) => {
 
       {
         Header: 'Last Update',
-        accessor: 'day'
+        accessor: 'time',
+        Cell: (e: any) => {
+          let lastUpdate = e.value.replace('T', ' ')
+          lastUpdate = lastUpdate.slice(0, lastUpdate.length - 9)
+          return <p>{lastUpdate}</p>
+        }
       },
       {
         Header: 'Population',
