@@ -6,26 +6,9 @@ import Error from "next/error";
 import Head from "next/head";
 const defaultEndpoint = `https://covid-193.p.rapidapi.com/statistics?country=`;
 
-export async function getServerSideProps({ query }: any) {
-  const { id } = query;
-  const res = await fetch(`${defaultEndpoint}${id}`, {
-    method: "GET",
-    headers: {
-      "x-rapidapi-host": "covid-193.p.rapidapi.com",
-      "x-rapidapi-key": "67f1b9b329msh37f1aaceb84a3aep18c5fejsn7dd88e237824",
-    },
-  });
-
-  const data = await res.json();
-  return {
-    props: {
-      data,
-    },
-  };
-}
-
 // CHARTJS DATA
 function Country({ data }: any) {
+  // Map countries data in the raw response
   const countries = data["response"][0];
   if (!countries) {
     return <Error statusCode={404} />;
@@ -74,11 +57,10 @@ function Country({ data }: any) {
     },
   };
 
+  // format date as yyyy/mm/dd HH:MM
   let lastUpdate = countries.time.replace("T", " ");
   lastUpdate = lastUpdate.slice(0, lastUpdate.length - 9);
 
-  /*   console.log(countries)
-   */
   return (
     <div className="bg-gray-100 min-h-screen w-full grid justify-items-center">
       <Head>
@@ -158,3 +140,22 @@ function Country({ data }: any) {
 }
 
 export default Country;
+
+// Get data from api
+export async function getServerSideProps({ query }: any) {
+  const { id } = query;
+  const res = await fetch(`${defaultEndpoint}${id}`, {
+    method: "GET",
+    headers: {
+      "x-rapidapi-host": "covid-193.p.rapidapi.com",
+      "x-rapidapi-key": "67f1b9b329msh37f1aaceb84a3aep18c5fejsn7dd88e237824",
+    },
+  });
+
+  const data = await res.json();
+  return {
+    props: {
+      data,
+    },
+  };
+}

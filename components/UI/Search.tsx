@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, ChangeEvent } from "react";
 import Link from "next/link";
 export default function Search() {
   const [countryList, setCountryList] = useState<any>();
@@ -27,7 +27,7 @@ export default function Search() {
   const [searchResults, setSearchResults] = React.useState(countries);
   let [inputSelected, setInputSelected] = React.useState(false);
 
-  const handleChange = (event: any) => {
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(event.target.value);
 
     if (searchTerm.length <= 1) {
@@ -40,9 +40,9 @@ export default function Search() {
   };
 
   React.useEffect(() => {
-    const results: any =
+    const results: String =
       countries &&
-      countries.filter((e: any) =>
+      countries.filter((e: String) =>
         e.toLowerCase().includes(searchTerm.toLowerCase())
       );
     setSearchResults(results);

@@ -4,7 +4,7 @@ import { SelectorIcon } from "@heroicons/react/solid";
 
 import Link from "next/link";
 
-function classNames(...classes: any) {
+function classNames(...classes: string[]): string {
   return classes.filter(Boolean).join(" ");
 }
 
@@ -58,9 +58,9 @@ export default function Dropdown() {
         >
           <Listbox.Options className="absolute z-10 mt-1 w-full bg-white shadow-lg max-h-56 rounded-md py-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none sm:text-sm">
             {countries &&
-              countries.map((country: any) => (
+              countries.map((country: String) => (
                 <Listbox.Option
-                  key={country}
+                  key="country"
                   className={({ active }) =>
                     classNames(
                       active ? "text-white bg-indigo-600" : "text-gray-900",

@@ -6,11 +6,12 @@ import Link from "next/link";
 import Head from "next/head";
 
 const Home: NextPage = ({ data }: any) => {
+  // Sort countries from api response
   const sortedCountries = data["response"].sort((a: any, b: any) =>
     a.continent > b.continent ? 1 : -1
   );
-  /*   console.log(sortedCountries)
-   */
+
+  // Define column headers for the table
   const columns = React.useMemo(
     () => [
       {
@@ -77,6 +78,7 @@ const Home: NextPage = ({ data }: any) => {
 
 export default Home;
 
+// Fetch data from api
 const defaultEndpoint = "https://covid-193.p.rapidapi.com/statistics";
 
 export async function getServerSideProps() {
