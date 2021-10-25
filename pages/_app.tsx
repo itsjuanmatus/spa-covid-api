@@ -1,14 +1,14 @@
-import '../styles/globals.css'
-import { AppProps } from 'next/app'
-import Navbar from '../components/Layout/Navbar'
-import 'regenerator-runtime/runtime';
+import "../styles/globals.css";
+import { AppProps } from "next/app";
+import Navbar from "../components/Layout/Navbar";
+import "regenerator-runtime/runtime";
 
-function MyApp ({ Component, pageProps }: AppProps) {
+function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
-    <Navbar />
+      <Navbar />
       <Component {...pageProps} />
     </>
-  )
+  );
 }
-export default MyApp
+export default MyApp;
